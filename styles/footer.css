@@ -1,0 +1,26 @@
+#footer-container{
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ height: 60px;
+}
+#footer-content{
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+}
+#glyphs-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+#glyphs-container > a{
+  margin:3px 6px;
+}
+#copyright{
+  font-family: Century Gothic;
+  font-size:13px;
+  letter-spacing: -.01rem;
+  font-weight: bold;
+}

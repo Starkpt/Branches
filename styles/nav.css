@@ -1,0 +1,45 @@
+
+header{
+  width:100vw;
+  border-bottom: 2px solid #eee;
+}
+
+#navbar,
+#navbar > * {
+  display:flex;
+  align-self: center;
+}
+
+#navbar,
+#nav-menu{
+  flex-direction:row;
+  align-content: center;
+  justify-content: space-between;
+}
+
+#logo-container{
+}
+
+#navbar{
+  width:1300px;
+  height:95px;
+  height:80px;
+  /* padding:0 50px; */
+}
+ul#nav-menu{
+  font-weight: 400;
+}
+
+ul#nav-menu > li{
+  width:110px;
+  text-align: center;
+  letter-spacing: .8px;
+  transition-property: font-weight;
+  transition-duration: .06s;
+  transition-delay: .15s;
+}
+ul#nav-menu > li:hover{
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: .75px;
+}

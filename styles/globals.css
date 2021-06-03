@@ -1,0 +1,35 @@
+
+/*** This is the RESET CSS file ***/
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Raleway, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  overflow-x:hidden;
+}
+body{
+  background:#fff;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  color:#002E76;
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+header,main,footer{
+  display: flex;
+  flex-direction: column;
+}
+
+ul{
+  padding:0;
+  margin:0;
+  list-style:none;
+}

@@ -1,0 +1,381 @@
+/* SLIDES Global Rules */
+
+.slide{
+  width:100vw;
+  height:100vh;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.half{
+  height:50vh;
+}
+
+.slide-container{
+  width:1000px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  background-color: #FCFDFD;
+}
+
+.slide-container h1{
+  letter-spacing: .5px;
+}
+
+.slide-container > h1{
+  font-weight: 900 !important;
+  margin-bottom:50px;
+}
+
+
+/* Intro Slide */
+#intro-slide{
+  position: relative;
+  height:calc(100vh - 95px);
+  height:calc(100vh - 80px);
+  flex-direction: column;
+}
+
+#intro-slide > *{
+  align-self:center;
+}
+
+#intro-slide h1{
+  font-weight: 600;
+}
+
+#filter-gradient{
+  width:100%;
+  height: 100%;
+  position: absolute;
+  /* 00193F - 0065FF - #002E76*/
+  background: linear-gradient(180deg, #FFFFFF 0%, #002E76 100%);
+  opacity: 5%;
+}
+
+#know-more{
+  font-weight: 600;
+  position: absolute;
+  bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+#know-more p{
+  margin:5px 0;
+}
+
+
+/* Trifecta Slide */
+#trifecta-slide{
+  flex-direction: column;
+  align-items:center;
+  justify-content:space-evenly;
+}
+
+#trifecta-container{
+  height: 400px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#trifecta{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#trifecta li{
+  width:225px;
+  margin:0 50px;
+}
+#trifecta li h3{
+  margin:30px 0 10px 0;
+}
+
+#trifecta li p{
+  letter-spacing: .4px;
+}
+
+#flavor-container{
+  height:120px;
+  margin-top: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+#flavor-text h4{
+  width:80%;
+  text-align: center;
+  font-size:1.20rem;
+  letter-spacing: .1px;;
+  font-weight:600;
+}
+
+
+/* Projects Slide */
+#showcase-slide{
+  align-items:center;
+}
+#showcase-container{
+  width:100vw;
+  height:fit-content;
+  padding: 95px 0 160px;
+}
+#showcase-full{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+}
+.showcase-arrows{
+  opacity:0.1;
+  transition-property: opacity;
+  transition-duration: .2s;
+  transition-delay: .05s;
+}
+.showcase-arrows:hover{
+  opacity:1;
+}
+#showcase-cards{
+  display:flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items: center;
+}
+
+.showcase-card{
+  display: flex;
+  flex-direction: column;
+  width:290px;
+  min-height:400px;
+  margin:0 25px;
+  text-align: center;
+  justify-content: center;
+  
+  background-color:#FFFFFF;
+  border:1px solid #EEEEEE;
+  
+  transition-property: box-shadow;
+  transition-duration: .2s;
+  transition-delay: .05s;
+}
+.showcase-card > a{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding:35px 20px;
+}
+.showcase-card:hover{
+  box-shadow: 0px 0px 20px #EEEEEE;
+}
+.showcase-card h2{
+  font-weight: 800;
+  margin-bottom:5px;
+}
+.showcase-card p{
+  font-size:.9rem;
+  font-weight: 500;
+}
+
+.showcase-card > a > *{
+  margin-bottom: 10px;
+}
+.showcase-card > a > :last-child{
+  margin-top:10px;
+  margin-bottom:0 !important;
+}
+
+.project-skylight{
+  margin-top:20px !important;
+  margin-bottom:10px !important;
+}
+.card-info{
+  margin:20px 0;
+}
+.card-info p{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.showcase-card h2,
+.card-url{
+  font-family: Century Gothic;
+}
+
+.status-url{
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items: center;
+  margin:0;
+}
+
+.card-status{
+  width:10px;
+  height: 10px;
+  border-radius: 50%;
+  background:#00E132;
+}
+
+.card-url{
+  font-size:.8rem;
+  margin-left: 5px;
+}
+.card-url:hover{
+  text-decoration: underline;
+}
+.card-tags{
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+}
+
+.card-tag{
+  width:max-content;
+  height: 23px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  z-index: 0;
+}
+.card-tag::before,
+.card-tag::after{
+  position:absolute;
+  top:0px;
+  content:"";
+  width:21px;
+  height: 21px;
+  border:1px solid #EEEEEE;
+  border-radius: 50%;
+  z-index: -1;
+  background:#FFFFFF;
+}
+
+.card-tag::before{
+  left:-11.5px;
+}
+
+.card-tag::after{
+  right:-11.5px;
+}
+
+.card-tag,
+.card-tag::before,
+.card-tag::after,
+.center-rect{
+  transition-property: background-color;
+  transition-duration: .2s;
+  transition-delay: .02s;
+}
+.card-tag:hover,
+.card-tag:hover::before,
+.card-tag:hover::after{
+  background:#EEEEEE;
+}
+.card-tag:hover .center-rect{
+  background:transparent;
+}
+
+.center-rect{
+  display: flex;
+  /* align-items: center; */
+  padding:3.5px;
+  height: inherit;
+  border:1px solid #EEEEEE;
+  border-left: 0;
+  border-right: 0;
+  background:#FFFFFF;
+}
+
+.center-rect p{
+  font-size:.725rem;
+  font-weight: 500;
+  letter-spacing: .05rem;
+} 
+
+
+/* About Slide */
+
+#about-container{
+  padding:50px;
+  text-align: center;
+}
+
+#about-container h1{
+  margin-bottom:30px;
+}
+
+#about-container > p{
+  font-size: 1.15rem;
+}
+
+/* Contact Slide */
+
+#contact-slide h1{
+  margin-bottom: 30px;
+}
+#contact-container{
+  padding: 80px 0;
+}
+#contact-form{
+  width:50%;
+  display: flex;
+  flex-direction:column;
+}
+
+#contact-form input,
+#contact-form textarea{
+  padding:12px;
+  margin-bottom:10px;
+  border:1px solid #EEEEEE;
+  font-family: Raleway;
+  border-radius:4px;
+  color:#000000;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus{
+  outline:none;
+}
+
+#contact-name{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#contact-name input{
+  width:49%;
+}
+
+
+#contact-message{
+  height: 180px;
+  resize: none;  
+}
+
+#contact-submit{
+  /* height:40px; */
+  background-color:#EEEEEE;
+  font-size:1.1rem;
+  letter-spacing:.05rem;
+  font-weight: 600;
+  margin:0 !important;
+  cursor:pointer;
+  color:#002E76 !important;
+
+  transition-property: background-color, color;
+  transition-duration: .2s;
+  transition-delay: .05s;
+}
+
+#contact-submit:hover{
+  background-color:#002E76;
+  color:#EEEEEE !important;
+}
