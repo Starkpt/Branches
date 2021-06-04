@@ -6,14 +6,14 @@ import Footer from 'components/Footer'
 import BgPattern from 'components/Background'
 
 export default function Index({projects}) {
-  console.log(projects)
+  // console.log(projects)
   return (
     <>
       <Head>
         <title>Branches</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      
       <header>
         <Nav />
       </header>

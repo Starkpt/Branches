@@ -1,7 +1,7 @@
 
 //todo after project is almost finished
 
-export default function BgPatter(){
+export default function BgPattern(){
   
   return(
     <>

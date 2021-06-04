@@ -34,8 +34,8 @@ ul#nav-menu > li{
   width:110px;
   text-align: center;
   letter-spacing: .8px;
-  transition-property: font-weight;
-  transition-duration: .06s;
+  transition-property: font-weight, letter-spacing;
+  transition-duration: .1s;
   transition-delay: .15s;
 }
 ul#nav-menu > li:hover{
