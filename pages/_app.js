@@ -4,11 +4,14 @@ import 'styles/home.css'
 import 'styles/footer.css'
 
 import getConfig from 'next/config'
+import Layout from '../components/Layout'
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   )
 }

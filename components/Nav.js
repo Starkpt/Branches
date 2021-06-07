@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Nav(){
   return(
@@ -10,8 +11,16 @@ export default function Nav(){
           </a>
         </div>
         <ul id="nav-menu">
-          <li>Projects</li>
-          <li>About</li>
+          <li>
+            <Link href="/projects">
+              <a>Projects</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/about">
+              <a>About</a>
+            </Link>
+          </li>
         </ul>
       </div>
     </>
