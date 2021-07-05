@@ -6,7 +6,7 @@ export default function Nav(){
     <>
       <div id="navbar">
         <div id="logo-container">
-          <a href="#">
+          <a href="/">
             <Image src="/icons/branches.png" width={48} height={48} />
           </a>
         </div>

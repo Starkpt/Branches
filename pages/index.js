@@ -1,6 +1,5 @@
 import Head from 'next/head'
-// import styles from 'styles/Homepage.module.css'
-import Home from 'components/Home'
+import Home from './Home'
 import BgPattern from 'components/Background'
 
 export default function Index({projects}) {
