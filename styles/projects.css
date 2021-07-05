@@ -70,7 +70,7 @@
   align-items: center;
 }
 #filters-container li{
-  height: 16px;
+  height: 20px;
   margin-left: 10px;
   display: flex;
   flex-direction: row;
@@ -91,16 +91,16 @@
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;
   background-color: white;
-  height: 16px;
-  width: 16px;
-  padding: 3px;
+  height: 20px;
+  width: 20px;
+  padding: 4px;
 }
 .filter-list .right-semi-circle{
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
   background-color: white;
-  height: 16px;
-  width: 16px;
+  height: 20px;
+  width: 20px;
 }
 .filter-list .bullet-circle{
   display: flex;
@@ -112,37 +112,32 @@
   justify-content: center;
   align-items: center;
 }
-.filter-list .bullet-circle > div{
-  width: 0%;
-  height: 0%;
-  
-  transition: width .1s cubic-bezier(0.075, 0.82, 0.165, 1);
+.filter-list .bullet-circle::before{
+  content:"";
+  width: 40%;
+  height: 40%;
+  border-radius:50%;
+  background-image:url('/icons/tag-bullet.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity:0;
+
+  transition: width .9s cubic-bezier(0.075, 0.82, 0.165, 1),
+              height .9s cubic-bezier(0.075, 0.82, 0.165, 1),
+              opacity .9s cubic-bezier(0.075, 0.82, 0.165, 1)
 }
-.filter-list .bullet-circle > div img{
-  width: 0%;
-  height: 0%;
-  
-  transition: width .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+.filter-list li:hover .bullet-circle::before{
+  opacity: 1;
 }
-.filter-list li:hover .bullet-circle > div{
-  width: 50%;
-  height: 50%;
-}
-.filter-list .bullet-circle img{
-  width: 100%;
-  height: 100%;
+.filter-list .tag-input:checked ~ .bullet-circle::before{
+  opacity:1;
+  width:100%;
+  height:100%;
 }
 #filters-container .tag-input{
   display:none;
 }
-#filters-container .tag-input:checked ~ .bullet-circle > div{
-  width: 90%;
-  height: 90%;
-}
-#filters-container .tag-input:checked ~ .bullet-circle > div img{
-  width: 100%;
-  height: 100%;
-}
+
 .filter-list .tag-name{
   font-size: 12px;
   background-color: white;
@@ -150,7 +145,5 @@
   flex-direction: column;
   justify-content: center;
   font-weight: 500;
-}
-#filters-container .tag-input{
-  display:none
+  padding-left: 6px;
 }

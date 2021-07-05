@@ -33,9 +33,7 @@ export default function Projects() {
                   <label for="tag-development">
                     <div className="left-semi-circle">
                       <input type="checkbox" id="tag-development" class="tag-input" name="development" />
-                      <div className="bullet-circle">
-                        <Image src="/icons/tag-bullet.svg" width={0} height={0} />
-                      </div>
+                      <div className="bullet-circle"></div>
                     </div>
                     <div className="tag-name">Development</div>
                     <div className="right-semi-circle"></div>
