@@ -6,6 +6,7 @@ export default function Projects() {
   
   const toggleFilters = () => {
     let filters = document.getElementById('filters-wrapper')
+    // filters.classList.toggle('filters-hide')
     filters.classList.toggle('filters-show')
   }
 
@@ -115,6 +116,41 @@ export default function Projects() {
             </div>
           </div>
           <ul>
+          <li className="project-item">
+              <a href="">
+                <div className="project-thumbnail">
+                  <Image src="/skylights/365viagens.jpg" layout="fill" objectFit="contain"/>
+                </div>
+                <div className="project-list-info">
+                  <div className="project-list-details">
+                    <div className="project-title">
+                      <div className="title-grouping">
+                        <h3>365 Viagens</h3>
+                        <h5>Travel Agency</h5>
+                      </div>
+                      <div className="project-status status-offline">
+                        {/* <Image src="/icons/tag-bullet.svg" width={10} height={10} /> */}
+                      </div>
+                    </div>
+                    <ul className="project-tags">
+                      <li>
+                        <div className="left-semi-circle"></div>
+                        <div className="tag-name">Web Design</div>
+                        <div className="right-semi-circle"></div>
+                      </li>
+                      <li>
+                        <div className="left-semi-circle"></div>
+                        <div className="tag-name">Web Design</div>
+                        <div className="right-semi-circle"></div>
+                      </li>
+                    </ul>
+                    <div className="project-description">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dignissim rutrum tellus, sit amet blandit dui dapibus ac. Proin sed quam sit amet dui ullamcorper mollis. Curabitur lorem erat, luctus condimentum scelerisque ut, tincidunt vel sit amet dui ullamcorper mollis. Curabitur lorem erat, luctus condimentum scelerisque ut, tincidunt vel</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
             <li className="project-item">
               <a href="">
                 <div className="project-thumbnail">
@@ -122,30 +158,65 @@ export default function Projects() {
                 </div>
                 <div className="project-list-info">
                   <div className="project-list-details">
-                    <h3>365 Viagens</h3>
-                    <h5>Travel Agency</h5>
+                    <div className="project-title">
+                      <div className="title-grouping">
+                        <h3>365 Viagens</h3>
+                        <h5>Travel Agency</h5>
+                      </div>
+                      <div className="project-status status-online">
+                        {/* <Image src="/icons/tag-bullet.svg" width={10} height={10} /> */}
+                      </div>
+                    </div>
                     <ul className="project-tags">
                       <li>
-                        <a href="">
-                          <div className="left-semi-circle"></div>
-                          <div className="tag-name">Web Design</div>
-                          <div className="right-semi-circle"></div>
-                        </a>
+                        <div className="left-semi-circle"></div>
+                        <div className="tag-name">Web Design</div>
+                        <div className="right-semi-circle"></div>
                       </li>
                       <li>
-                        <a href="">
-                          <div className="left-semi-circle"></div>
-                          <div className="tag-name">Web Design</div>
-                          <div className="right-semi-circle"></div>
-                        </a>
+                        <div className="left-semi-circle"></div>
+                        <div className="tag-name">Web Design</div>
+                        <div className="right-semi-circle"></div>
                       </li>
                     </ul>
                     <div className="project-description">
-                      
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dignissim rutrum tellus, sit amet blandit dui dapibus ac. Proin sed quam sit amet dui ullamcorper mollis. Curabitur lorem erat, luctus condimentum scelerisque ut, tincidunt vel sit amet dui ullamcorper mollis. Curabitur lorem erat, luctus condimentum scelerisque ut, tincidunt vel</p>
                     </div>
                   </div>
-                  <div className="project-list-status">
-                    <Image src="/icons/tag-bullet.svg" width={10} height={10} />
+                </div>
+              </a>
+            </li>
+            <li className="project-item">
+              <a href="">
+                <div className="project-thumbnail">
+                  <Image src="/skylights/365viagens.jpg" layout="fill" objectFit="contain"/>
+                </div>
+                <div className="project-list-info">
+                  <div className="project-list-details">
+                    <div className="project-title">
+                      <div className="title-grouping">
+                        <h3>365 Viagens</h3>
+                        <h5>Travel Agency</h5>
+                      </div>
+                      <div className="project-status status-maintenance">
+                        {/* <Image src="/icons/tag-bullet.svg" width={10} height={10} /> */}
+                      </div>
+                    </div>
+                    <ul className="project-tags">
+                      <li>
+                        <div className="left-semi-circle"></div>
+                        <div className="tag-name">Web Design</div>
+                        <div className="right-semi-circle"></div>
+                      </li>
+                      <li>
+                        <div className="left-semi-circle"></div>
+                        <div className="tag-name">Web Design</div>
+                        <div className="right-semi-circle"></div>
+                      </li>
+                    </ul>
+                    <div className="project-description">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dignissim rutrum tellus, sit amet blandit dui dapibus ac. Proin sed quam sit amet dui ullamcorper mollis. Curabitur lorem erat, luctus condimentum scelerisque ut, tincidunt vel sit amet dui ullamcorper mollis. Curabitur lorem erat, luctus condimentum scelerisque ut, tincidunt vel</p>
+                    </div>
                   </div>
                 </div>
               </a>
