@@ -27,7 +27,7 @@ export async function getServerSideProps(){
   const { API_URL } = process.env
    
   const projects = await fetch(`${API_URL}/projects`).then(res => res.json())
-  console.log(projects)
+  // console.log(projects)
   return{
     props:{
       projects: projects

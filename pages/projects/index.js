@@ -1,9 +1,28 @@
 import React from 'react'
 import Image from 'next/image'
+const {API_URL} = process.env
+console.log(API_URL)
 
+// export const getStaticProps = async () => {
+//   const res = await fetch(`${API_URL}/projects`)
+//   console.log(API_URL)
+//   const data = res.json()
+//   return res
+// }
 
-export default function Projects() {
-  
+export async function getStaticProps(){
+   
+  const projects = await fetch(`${API_URL}/projects`).then(res => res.json())
+  // console.log(projects)
+  return{
+    props:{
+      projects: projects
+    }
+  }
+}
+
+export default function Projects({projects}) {
+  console.log(projects)
   const toggleFilters = () => {
     let filters = document.getElementById('filters-wrapper')
     // filters.classList.toggle('filters-hide')
