@@ -3,6 +3,7 @@ import 'styles/fontfaces.css'
 import 'styles/nav.css'
 import 'styles/home.css'
 import 'styles/projects.css'
+import 'styles/project.css'
 import 'styles/footer.css'
 
 import getConfig from 'next/config'

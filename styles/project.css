@@ -1,0 +1,195 @@
+#projects-container{
+  padding: 110px 20%;
+  width: 100%;
+  min-height: 40vh;
+  margin:auto;
+}
+
+#project-wrapper{
+  width: 100%;
+  padding: 30px 45px 50px 45px;
+  background-color: #FDFDFD;
+}
+#project-header{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 45px;
+}
+#project-header h1{
+  font-family: 'Mulish';
+  font-weight: 800;
+  font-style: normal;
+  font-size: 40px;
+}
+
+.tags-section{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap:14px;
+  justify-content: flex-end;
+}
+.tags-section > * {
+  z-index: 1;
+}
+.tags-section::before{
+  content:"";
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  height: 1px;
+  background-color: #E2E2E2;
+  z-index: 0;
+}
+.project-tags .left-semi-circle{
+  border-left: 1px solid #E2E2E2;
+  border-top: 1px solid #E2E2E2;
+  border-bottom: 1px solid #E2E2E2;
+}
+.project-tags .right-semi-circle{
+  border-right: 1px solid #E2E2E2;
+  border-top: 1px solid #E2E2E2;
+  border-bottom: 1px solid #E2E2E2;
+}
+.project-tags .tag-name{
+  border-top: 1px solid #E2E2E2;
+  border-bottom: 1px solid #E2E2E2;
+}
+.status-border{
+  border: 1px solid #F4F6FA;
+  border: 1px solid #E2E2E2;
+  border-radius: 50%;
+}
+.project-status{
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+#project-filling {
+  display: grid;
+  grid-template-columns: repeat(2, 486px);
+  grid-template-rows: repeat(2, auto);
+  grid-column-gap: 55px;
+  grid-row-gap: 45px;
+
+  width: 100%;
+  height: auto;
+}
+#project-filling > div{
+  height: auto;
+}
+#project-description { 
+  
+}
+#process {
+  
+}
+#skyview {
+  border: 1px solid #F3F4F6;
+  text-align: center;
+  font-family: 'Mulish','Arial';
+  font-size: .8rem;
+  font-weight: bolder;
+}
+#project-schematics {
+  border: 1px solid #F3F4F6;
+}
+#skyview-slider{
+  position:relative;
+  height: 310px;
+}
+#skyview-slider li{
+  position: absolute;
+}
+
+.skyview-slide{
+  opacity: 0;
+  -webkit-transition: opacity 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: opacity 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.current{
+  z-index: 1;
+  opacity: 1;
+}
+
+.skyview-arrow-left,
+.skyview-arrow-right{
+  position:absolute;
+  top: 50%;
+  z-index: 1;
+  opacity: 1;
+  transform:translateY(-50%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.skyview-arrow-left {
+  /* background-color: white; */
+  /* background: rgb(255,255,255); */
+  background: linear-gradient(
+                  90deg, 
+                  rgba(255,255,255,.5) 0%, 
+                  rgba(255,255,255,0) 100%);
+  padding-left:5px;
+  padding-right:10px;
+}
+.skyview-arrow-right {
+  /* background-color: white; */
+  /* background: rgb(255,255,255); */
+  right: 0;
+  background: linear-gradient(
+                  270deg, 
+                  rgba(255,255,255,.5) 0%, 
+                  rgba(255,255,255,0) 100%);
+  padding-left:10px;
+  padding-right:5px;
+}
+.skyview-arrow-left > div,
+.skyview-arrow-right > div{
+  opacity:.2;
+}
+.skyview-arrow-left:hover > div,
+.skyview-arrow-right:hover > div{
+  opacity:1;
+}
+
+#skyview-bullets{
+  width: 100%;
+  padding: 10px 20px 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.skyview-bullet{
+  width: 11px;
+  height: 11px;
+  background-color: #002E76;
+  background-color: #F4F6FA;
+  /* border: 1px solid #002E76; */
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-transition: background-color .9s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: background-color .9s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.skyview-bullet.active{
+  background-color: #002E76;
+}
+.skyview-bullet:hover{
+  background-color: #002E76;
+}
+
+.skyview ul{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+}
+#site-link{
+  margin-bottom: 15px;
+  display: block;
+}

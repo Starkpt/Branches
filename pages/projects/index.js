@@ -38,7 +38,7 @@ export default function Projects({projects}) {
     <main>
       <div id="projects-container">
         <div id="projects-list">
-          <div id="project-header">
+          <div id="project-list-header">
             <h1>Projects</h1>
             <button id="filter-btn" onClick={toggleFilters}>
               <Image src="/icons/filters.svg" width={20} height={20} />
@@ -141,7 +141,7 @@ export default function Projects({projects}) {
           </div>
           <ul>
             {projects.map(project => (
-              <li className="project-item">
+              <li key={project.id} className="project-item">
                 <Link href="/projects/[slug]" as={`/projects/${project.slug}`}>
                 <a href="">
                   <div className="project-thumbnail">
@@ -156,8 +156,8 @@ export default function Projects({projects}) {
                         </div>
                         {
                           project.state == true
-                          ? <div className="project-status status-online"></div>
-                          : <div className="project-status status-offline"></div>
+                          ? <div className="projects-status status-online"></div>
+                          : <div className="projects-status status-offline"></div>
                         }
                       </div>
                       <ul className="project-tags">
@@ -169,7 +169,7 @@ export default function Projects({projects}) {
                           </li>
                         ))}
                       </ul>
-                      <div className="project-description">
+                      <div className="project-list-description">
                         <p>{project.description}</p>
                       </div>
                     </div>
