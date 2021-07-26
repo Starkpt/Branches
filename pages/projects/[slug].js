@@ -84,8 +84,21 @@ const Project = ( {project} ) => {
     }
   }
 
+  const processModal = (e) => {
+    var modalEle = document.getElementById('process-modal')
+    modalEle.innerHTML = `<img src=${e.target.src} />`
+    modalEle.classList.add('modal-show')
+  }
+
+  const closeModal = (e) => {
+    var modalEle = document.getElementById('process-modal')
+    modalEle.innerHTML = ``
+    modalEle.classList.remove('modal-show')
+  }
+
   return (
     <main>
+      <div id="process-modal" onClick={(e) => {closeModal(e)}}></div>
       <div id="project-container">
         <div id="project-wrapper">
           <div id="project-header">
@@ -156,15 +169,143 @@ const Project = ( {project} ) => {
                 <a id="site-link" href="http:\\www.365viagens.pt">Ver Página</a>
             </div>
             <div id="project-process">
-                <h4>Process</h4>
-                <ul>
-
+                <h3>Process</h3>
+                <ul id="process-grid">
+                  {project.process.map(p => {
+                    return(
+                      <li className="process-thumbnail" onClick={(e) => {processModal(e)}}>
+                        <Image loader={sliderLoader} src={p.url} width={153} height={153}  objectFit="cover"/>
+                      </li>
+                    )
+                  })}
                 </ul>
             </div>
             <div id="project-schematics">
-                <div id="logo-container">
-                  {/* <Image loader={logoLoader} src={proc.url} layout="fill" objectFit="contain"/> */}
+              <div id="project-logo-container">
+                <ul id="logo-list">
+                  {project.logo.map(l => {
+                    console.log(l)
+                    return(
+                      <li>
+                        <Image loader={sliderLoader} src={l.url} width={180} height={90}  objectFit="contain"/>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+              <div id="schematics-info">
+                <div id="color-scheme">
+                  <h3>Color Scheme</h3>
+                  <ul>
+                    <li>
+                      <div className="color-square"></div>
+                      <div>
+                        <p>Color Name</p>
+                        <small>#041DBB</small>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="color-square"></div>
+                      <div>
+                        <p>Secondary Color Name</p>
+                        <small>#041DBB</small>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
+                <div id="fonts-list">
+                  <h3>Fonts</h3>
+                  <ul>
+                    <li>
+                      <div className="color-square"></div>
+                      <div>
+                        <p>Color Name</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="color-square"></div>
+                      <div>
+                        <p>Secondary Color Name</p>
+                        <small>#041DBB</small>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div id="technologies">
+                  <h3>Technologies</h3>
+                  <div id="backend-techs">
+                    <ul>
+                      <li>
+                        <div className="color-square"></div>
+                        <div>
+                          <p>Color Name</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="color-square"></div>
+                        <div>
+                          <p>Secondary Color Name</p>
+                          <small>#041DBB</small>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div id="frontend-techs">
+                    <ul>
+                      <li>
+                        <div className="color-square"></div>
+                        <div>
+                          <p>Color Name</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="color-square"></div>
+                        <div>
+                          <p>Secondary Color Name</p>
+                          <small>#041DBB</small>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div id="breakpoints">
+                  <h3>Breakpoints</h3>
+                  <div id="backend-techs">
+                    <ul>
+                      <li>
+                        <div className="color-square"></div>
+                        <div>
+                          <p>Color Name</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="color-square"></div>
+                        <div>
+                          <p>Secondary Color Name</p>
+                          <small>#041DBB</small>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div id="frontend-techs">
+                    <ul>
+                      <li>
+                        <div className="color-square"></div>
+                        <div>
+                          <p>Color Name</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="color-square"></div>
+                        <div>
+                          <p>Secondary Color Name</p>
+                          <small>#041DBB</small>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
