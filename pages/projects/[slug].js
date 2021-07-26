@@ -169,22 +169,21 @@ const Project = ( {project} ) => {
                 <a id="site-link" href="http:\\www.365viagens.pt">Ver Página</a>
             </div>
             <div id="project-process">
-                <h3>Process</h3>
-                <ul id="process-grid">
-                  {project.process.map(p => {
-                    return(
-                      <li className="process-thumbnail" onClick={(e) => {processModal(e)}}>
-                        <Image loader={sliderLoader} src={p.url} width={153} height={153}  objectFit="cover"/>
-                      </li>
-                    )
-                  })}
-                </ul>
+              <h3>Processo Criativo</h3>
+              <ul id="process-grid">
+                {project.process.map(p => {
+                  return(
+                    <li className="process-thumbnail" onClick={(e) => {processModal(e)}}>
+                      <Image loader={sliderLoader} src={p.url} width={153} height={153}  objectFit="cover"/>
+                    </li>
+                  )
+                })}
+              </ul>
             </div>
             <div id="project-schematics">
               <div id="project-logo-container">
                 <ul id="logo-list">
                   {project.logo.map(l => {
-                    console.log(l)
                     return(
                       <li>
                         <Image loader={sliderLoader} src={l.url} width={180} height={90}  objectFit="contain"/>
@@ -195,115 +194,78 @@ const Project = ( {project} ) => {
               </div>
               <div id="schematics-info">
                 <div id="color-scheme">
-                  <h3>Color Scheme</h3>
+                  <h3>Esquema de Cores</h3>
                   <ul>
-                    <li>
-                      <div className="color-square"></div>
-                      <div>
-                        <p>Color Name</p>
-                        <small>#041DBB</small>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="color-square"></div>
-                      <div>
-                        <p>Secondary Color Name</p>
-                        <small>#041DBB</small>
-                      </div>
-                    </li>
+                    {project.colors.map(color => {
+                      return(
+                        <li>
+                          <div className="color-square" style={{ backgroundColor : color.hexcode}}></div>
+                          <div>
+                            <p>{color.name}</p>
+                            <small>{color.hexcode}</small>
+                          </div>
+                        </li>
+                      )
+                    })}
                   </ul>
                 </div>
                 <div id="fonts-list">
                   <h3>Fonts</h3>
                   <ul>
-                    <li>
-                      <div className="color-square"></div>
-                      <div>
-                        <p>Color Name</p>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="color-square"></div>
-                      <div>
-                        <p>Secondary Color Name</p>
-                        <small>#041DBB</small>
-                      </div>
-                    </li>
+                    {project.fonts.map(font => {
+                      return(
+                        <li>
+                          <p style={{ fontFamily : `${font.name}`}}>{font.name}</p>
+                        </li>
+                      )
+                    })}
                   </ul>
                 </div>
                 <div id="technologies">
-                  <h3>Technologies</h3>
-                  <div id="backend-techs">
-                    <ul>
-                      <li>
-                        <div className="color-square"></div>
-                        <div>
-                          <p>Color Name</p>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="color-square"></div>
-                        <div>
-                          <p>Secondary Color Name</p>
-                          <small>#041DBB</small>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div id="frontend-techs">
-                    <ul>
-                      <li>
-                        <div className="color-square"></div>
-                        <div>
-                          <p>Color Name</p>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="color-square"></div>
-                        <div>
-                          <p>Secondary Color Name</p>
-                          <small>#041DBB</small>
-                        </div>
-                      </li>
-                    </ul>
+                  <h3>Tecnologias</h3>
+                  <div id="techs-grouping">
+                    <div id="backend-techs">
+                      <h4>Backend</h4>
+                      <ul>
+                        {project.backend.map(be => {
+                          return(
+                            <li>
+                              <p>{be.name}</p>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </div>
+                    <div id="frontend-techs">
+                      <h4>Frontend</h4>
+                      <ul>
+                        {project.frontend.map(fe => {
+                          return(
+                            <li>
+                              <p>{fe.name}</p>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </div>
                   </div>
                 </div>
                 <div id="breakpoints">
                   <h3>Breakpoints</h3>
-                  <div id="backend-techs">
-                    <ul>
-                      <li>
-                        <div className="color-square"></div>
-                        <div>
-                          <p>Color Name</p>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="color-square"></div>
-                        <div>
-                          <p>Secondary Color Name</p>
-                          <small>#041DBB</small>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div id="frontend-techs">
-                    <ul>
-                      <li>
-                        <div className="color-square"></div>
-                        <div>
-                          <p>Color Name</p>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="color-square"></div>
-                        <div>
-                          <p>Secondary Color Name</p>
-                          <small>#041DBB</small>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
+                  <ul>
+                    {project.devices.map(device => {
+                      return(
+                        <li>
+                          <div style={{
+                              width : device.width / 12 + "px",
+                              height : device.height / 12 + "px"
+                            }}>
+                            <p>{device.width} x {device.height}</p>
+                          </div>
+                        </li>
+                      )
+                    })}
+                  </ul>
                 </div>
               </div>
             </div>
