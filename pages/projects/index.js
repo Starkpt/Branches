@@ -30,7 +30,7 @@ export default function Projects({projects}) {
     filters.classList.toggle('filters-show')
   }
 
-  const skylightLoader = ({ src }) => {
+  const imgLoader = ({ src }) => {
     return `${API_URL}${src}`
   }
 
@@ -145,7 +145,7 @@ export default function Projects({projects}) {
                 <Link href="/projects/[slug]" as={`/projects/${project.slug}`}>
                 <a href="">
                   <div className="project-thumbnail">
-                    <Image loader={skylightLoader} src={project.skyview[0].url} layout="fill" objectFit="contain"/>
+                    <Image loader={imgLoader} src={project.skyview[0].url} layout="fill" objectFit="contain"/>
                   </div>
                   <div className="project-list-info">
                     <div className="project-list-details">

@@ -16,7 +16,7 @@ export async function getServerSideProps(context){
     }
   }
 }
-const sliderLoader = ({ src }) => {
+const imgLoader = ({ src }) => {
   return `${API_URL}${src}`
 }
 
@@ -135,13 +135,13 @@ const Project = ( {project} ) => {
                     if(i==0){
                       return(
                         <li key={sv.id} className="skyview-slide current" data-zindex={-1} data-img={i}>
-                          <Image loader={sliderLoader} src={sv.url} width={510} height={310}  objectFit="cover"/>
+                          <Image loader={imgLoader} src={sv.url} width={510} height={310}  objectFit="cover"/>
                         </li>
                       )
                     }if(i>0){
                       return(
                         <li key={sv.id} className="skyview-slide" data-zindex={-1} data-img={i}>
-                          <Image loader={sliderLoader} src={sv.url} width={510} height={310}  objectFit="cover"/>
+                          <Image loader={imgLoader} src={sv.url} width={510} height={310}  objectFit="cover"/>
                         </li>
                       )
                     }
@@ -174,19 +174,19 @@ const Project = ( {project} ) => {
                 {project.process.map(p => {
                   return(
                     <li className="process-thumbnail" onClick={(e) => {processModal(e)}}>
-                      <Image loader={sliderLoader} src={p.url} width={153} height={153}  objectFit="cover"/>
+                      <Image loader={imgLoader} src={p.url} width={153} height={153}  objectFit="cover"/>
                     </li>
                   )
                 })}
               </ul>
             </div>
             <div id="project-schematics">
-              <div id="project-logo-container">
+              <div id="project-logo-container" class={`bg-contrast-${project.logoBgContrast}`}>
                 <ul id="logo-list">
                   {project.logo.map(l => {
                     return(
                       <li>
-                        <Image loader={sliderLoader} src={l.url} width={180} height={90}  objectFit="contain"/>
+                        <Image loader={imgLoader} src={l.url} width={180} height={90}  objectFit="contain"/>
                       </li>
                     )
                   })}

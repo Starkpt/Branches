@@ -12,7 +12,7 @@ export default function Index({projects}) {
       </Head>
 
       <main>
-        <Home />
+        <Home projects={projects} />
       </main>
 
     </>
