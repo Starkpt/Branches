@@ -169,7 +169,7 @@ const Project = ( {project} ) => {
                 <a id="site-link" href="http:\\www.365viagens.pt">Ver Página</a>
             </div>
             <div id="project-process">
-              <h3>Processo Criativo</h3>
+              <h3>Creative Process</h3>
               <ul id="process-grid">
                 {project.process.map(p => {
                   return(
@@ -194,7 +194,7 @@ const Project = ( {project} ) => {
               </div>
               <div id="schematics-info">
                 <div id="color-scheme">
-                  <h3>Esquema de Cores</h3>
+                  <h3>Color Scheme</h3>
                   <ul>
                     {project.colors.map(color => {
                       return(
@@ -222,7 +222,7 @@ const Project = ( {project} ) => {
                   </ul>
                 </div>
                 <div id="technologies">
-                  <h3>Tecnologias</h3>
+                  <h3>Technologies</h3>
                   <div id="techs-grouping">
                     <div id="backend-techs">
                       <h4>Backend</h4>

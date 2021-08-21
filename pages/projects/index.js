@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 const {API_URL} = process.env
 
+import slugify from 'slugify'
 
 // export const getStaticProps = async () => {
 //   const res = await fetch(`${API_URL}/projects`)
@@ -24,17 +25,61 @@ export async function getStaticProps(){
 
 export default function Projects({projects}) {
   
+  const [statusArr, setStatus] = useState([])
+  const [tagsArr, setTags] = useState([])
+  
+  //Image Loader from NextJS
+  const imgLoader = ({ src }) => {
+    return `${API_URL}${src}`
+  }
+  //Toggle visibility of filter section
   const toggleFilters = () => {
     let filters = document.getElementById('filters-wrapper')
     // filters.classList.toggle('filters-hide')
     filters.classList.toggle('filters-show')
+    console.log(tagsArr)
+  }
+  
+  const toggleStatus = (e) => {
+    let inputEle = e.target
+    if(inputEle.classList == "tag-input"){
+      // setStatus([...statusArr, `Entry 213`])
+      setStatus([...statusArr, `Entry 213`])
+      // console.log(e.target.tagName)
+      // console.log(inputEle.dataset.name)
+      // console.log(statusArr)
+    }
+  }
+  const toggleTags = (e) => {
+    let inputEle = e.target
+    if(inputEle.classList == "tag-input"){
+      if(!(tagsArr.includes(inputEle.name))){
+        setTags([...tagsArr, inputEle.name])
+      }else{
+        let tagIndex = tagsArr.findIndex(tag => tag == inputEle.name)
+        tagsArr.splice(tagIndex, 1)
+      }
+    }
   }
 
-  const imgLoader = ({ src }) => {
-    return `${API_URL}${src}`
-  }
+  const filterTags = []
+  projects.map(project => {
+    project.tags.map(tag => {
+      if(!filterTags.includes(tag.name)){
+        filterTags.push(tag.name)
+      }
+    })
+  })
 
-  return (
+  useEffect(() => {
+    
+  }, [statusArr])
+
+  useEffect(() => {
+    
+  }, [tagsArr])
+
+  return ( 
     <main>
       <div id="projects-container">
         <div id="projects-list">
@@ -51,9 +96,10 @@ export default function Projects({projects}) {
                 <h6>Status:</h6>
                 <ul>
                   <li>
-                    <label htmlFor="tag-online">
+                    {statusArr}
+                    <label htmlFor="tag-online"  onClick={(e) => {toggleStatus(e)}}>
                       <div className="left-semi-circle">
-                        <input type="checkbox" id="tag-online" className="tag-input" name="online" />
+                        <input type="checkbox" id="tag-online" className="tag-input" name="online"/>
                         <div className="bullet-circle"></div>
                       </div>
                       <div className="tag-name">Online</div>
@@ -85,63 +131,25 @@ export default function Projects({projects}) {
               <div id="filter-tags" className="filter-list">
                 <h6>Tags:</h6>
                 <ul>
-                  <li>
-                    <label htmlFor="tag-logo-design">
-                      <div className="left-semi-circle">
-                        <input type="checkbox" id="tag-logo-design" className="tag-input" name="logo-design" />
-                        <div className="bullet-circle"></div>
-                      </div>
-                      <div className="tag-name">Logo Design</div>
-                      <div className="right-semi-circle"></div>
-                    </label>
-                  </li>
-                  <li>
-                    <label htmlFor="tag-web-design">
-                      <div className="left-semi-circle">
-                        <input type="checkbox" id="tag-web-design" className="tag-input" name="web-design" />
-                        <div className="bullet-circle"></div>
-                      </div>
-                      <div className="tag-name">Web Design</div>
-                      <div className="right-semi-circle"></div>
-                    </label>
-                  </li>
-                  <li>
-                    <label htmlFor="tag-web-development">
-                      <div className="left-semi-circle">
-                        <input type="checkbox" id="tag-web-development" className="tag-input" name="web-development" />
-                        <div className="bullet-circle"></div>
-                      </div>
-                      <div className="tag-name">Web Development</div>
-                      <div className="right-semi-circle"></div>
-                    </label>
-                  </li>
-                  <li>
-                    <label htmlFor="tag-branding">
-                      <div className="left-semi-circle">
-                        <input type="checkbox" id="tag-branding" className="tag-input" name="branding" />
-                        <div className="bullet-circle"></div>
-                      </div>
-                      <div className="tag-name">Web Development</div>
-                      <div className="right-semi-circle"></div>
-                    </label>
-                  </li>
-                  <li>
-                    <label htmlFor="tag-other">
-                      <div className="left-semi-circle">
-                        <input type="checkbox" id="tag-other" className="tag-input" name="other" />
-                        <div className="bullet-circle"></div>
-                      </div>
-                      <div className="tag-name">Other</div>
-                      <div className="right-semi-circle"></div>
-                    </label>
-                  </li>
+                  {filterTags.map(fTag => (
+                    <li>
+                      <label className="filter-label" htmlFor={`input-${fTag}`} onClick={(e) => {toggleTags(e)}}>
+                        <div className="left-semi-circle">
+                          <input type="checkbox" id={`input-${fTag}`} className="tag-input" name={fTag} />
+                          <div className="bullet-circle"></div>
+                        </div>
+                        <div className="tag-name">{fTag}</div>
+                        <div className="right-semi-circle"></div>
+                      </label>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
           </div>
           <ul>
             {projects.map(project => (
-              <li key={project.id} className="project-item">
+              <li key={project.id} className="project-item" data-status={project.state} data-tags={project.tags.map(tag => slugify(tag.name,{lower:true}))}>
                 <Link href="/projects/[slug]" as={`/projects/${project.slug}`}>
                 <a href="">
                   <div className="project-thumbnail">

@@ -7,8 +7,6 @@ const imgLoader = ({ src }) => {
 }
 
 export default function Home({ projects }){
-
-
   return(
     <>
       <div id="intro-slide" className="slide">
