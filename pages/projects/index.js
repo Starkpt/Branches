@@ -15,7 +15,6 @@ import slugify from 'slugify'
 export async function getStaticProps(){
    
   const projects = await fetch(`${API_URL}/projects`).then(res => res.json())
-  // console.log(projects)
   return{
     props:{
       projects: projects
@@ -37,17 +36,20 @@ export default function Projects({projects}) {
     let filters = document.getElementById('filters-wrapper')
     // filters.classList.toggle('filters-hide')
     filters.classList.toggle('filters-show')
-    console.log(tagsArr)
   }
   
   const toggleStatus = (e) => {
     let inputEle = e.target
     if(inputEle.classList == "tag-input"){
-      // setStatus([...statusArr, `Entry 213`])
-      setStatus([...statusArr, `Entry 213`])
-      // console.log(e.target.tagName)
-      // console.log(inputEle.dataset.name)
-      // console.log(statusArr)
+      if(!(statusArr.includes(true)) && inputEle.name == "true"){
+        setStatus([...statusArr, true])
+      }else if(!(statusArr.includes(false)) && inputEle.name == "false"){
+        setStatus([...statusArr, false])
+      }else if(statusArr.includes(true) || statusArr.includes(false)){
+        let statusIndex = statusArr.findIndex(state => state === inputEle.name)
+        statusArr.splice(statusIndex, 1)
+        setStatus([...statusArr])
+      }
     }
   }
   const toggleTags = (e) => {
@@ -58,6 +60,7 @@ export default function Projects({projects}) {
       }else{
         let tagIndex = tagsArr.findIndex(tag => tag == inputEle.name)
         tagsArr.splice(tagIndex, 1)
+        setTags([...tagsArr])
       }
     }
   }
@@ -72,11 +75,31 @@ export default function Projects({projects}) {
   })
 
   useEffect(() => {
-    
+    const projectItems = document.querySelectorAll('.project-item')
+    for(let i=0;i<projectItems.length;i++){
+      projectItems[i].classList.remove('opacitor')
+      setTimeout(function(){
+        if(projectItems[i].classList.contains('opacitor')){
+          projectItems[i].classList.add('opacitor')
+        }else{
+          projectItems[i].classList.add('opacitor')
+        }
+      },350)
+    }
   }, [statusArr])
 
   useEffect(() => {
-    
+    const projectItems = document.querySelectorAll('.project-item')
+    for(let i=0;i<projectItems.length;i++){
+      projectItems[i].classList.remove('opacitor')
+      setTimeout(function(){
+        if(projectItems[i].classList.contains('opacitor')){
+          projectItems[i].classList.add('opacitor')
+        }else{
+          projectItems[i].classList.add('opacitor')
+        }
+      },350)
+    }
   }, [tagsArr])
 
   return ( 
@@ -96,27 +119,26 @@ export default function Projects({projects}) {
                 <h6>Status:</h6>
                 <ul>
                   <li>
-                    {statusArr}
-                    <label htmlFor="tag-online"  onClick={(e) => {toggleStatus(e)}}>
+                    <label htmlFor="tag-deployed" onClick={(e) => {toggleStatus(e)}}>
                       <div className="left-semi-circle">
-                        <input type="checkbox" id="tag-online" className="tag-input" name="online"/>
+                        <input type="checkbox" id="tag-deployed" className="tag-input" name="true"/>
                         <div className="bullet-circle"></div>
                       </div>
-                      <div className="tag-name">Online</div>
+                      <div className="tag-name">Deployed</div>
                       <div className="right-semi-circle"></div>
                     </label>
                   </li>
                   <li>
-                    <label htmlFor="tag-development">
+                    <label htmlFor="tag-development" onClick={(e) => {toggleStatus(e)}}>
                       <div className="left-semi-circle">
-                        <input type="checkbox" id="tag-development" className="tag-input" name="development" />
+                        <input type="checkbox" id="tag-development" className="tag-input" name="false" />
                         <div className="bullet-circle"></div>
                       </div>
                       <div className="tag-name">Development</div>
                       <div className="right-semi-circle"></div>
                     </label>
                   </li>
-                  <li>
+                  {/* <li>
                     <label htmlFor="tag-maintenance">
                       <div className="left-semi-circle">
                         <input type="checkbox" id="tag-maintenance" className="tag-input" name="maintenance" />
@@ -125,7 +147,7 @@ export default function Projects({projects}) {
                       <div className="tag-name">Maintenance</div>
                       <div className="right-semi-circle"></div>
                     </label>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
               <div id="filter-tags" className="filter-list">
@@ -148,7 +170,24 @@ export default function Projects({projects}) {
             </div>
           </div>
           <ul>
-            {projects.map(project => (
+            {projects.filter(project => {
+
+              if(!(statusArr.length) && !(tagsArr.length)){
+                return project
+              }
+              for(let i = 0; i<project.tags.length; i++){
+                if(tagsArr.includes(project.tags[i].name)){
+                  return project
+                }
+              }
+              // se tiver status no array E o array contiver o state
+              if(statusArr.length && statusArr.includes(project.state)){
+                for(let i = 0; i<statusArr.length; i++){
+                  return project
+                }
+              }
+
+            }).map(project => (
               <li key={project.id} className="project-item" data-status={project.state} data-tags={project.tags.map(tag => slugify(tag.name,{lower:true}))}>
                 <Link href="/projects/[slug]" as={`/projects/${project.slug}`}>
                 <a href="">
