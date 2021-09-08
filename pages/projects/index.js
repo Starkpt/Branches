@@ -84,7 +84,7 @@ export default function Projects({projects}) {
         }else{
           projectItems[i].classList.add('opacitor')
         }
-      },350)
+      },250)
     }
   }, [statusArr])
 
@@ -98,7 +98,7 @@ export default function Projects({projects}) {
         }else{
           projectItems[i].classList.add('opacitor')
         }
-      },350)
+      },250)
     }
   }, [tagsArr])
 

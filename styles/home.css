@@ -45,6 +45,7 @@
 
 #intro-slide h1{
   font-weight: 600;
+  text-align: center;
 }
 
 #filter-gradient{
@@ -71,6 +72,10 @@
 
 
 /* Trifecta Slide */
+
+#trifecta-slides{
+  margin-left:0px;
+}
 #trifecta-slide{
   flex-direction: column;
   align-items:center;
@@ -92,16 +97,20 @@
   flex-direction: row;
   justify-content: center;
 }
-
+#trifecta-slider{
+  display: none;
+}
 #trifecta li{
   width:225px;
   margin:0 50px;
 }
-#trifecta li h3{
+#trifecta li h3,
+#trifecta-slider li h3{
   margin:30px 0 10px 0;
 }
 
-#trifecta li p{
+#trifecta li p,
+#trifecta-slider li p{
   letter-spacing: .4px;
 }
 
@@ -112,7 +121,7 @@
   align-items: center;
 }
 
-#flavor-text h4{
+#flavor-container h4{
   width:80%;
   text-align: center;
   font-size:1.20rem;
@@ -400,4 +409,115 @@
 #contact-submit:hover{
   background-color:#002E76;
   color:#EEEEEE !important;
+}
+
+
+
+
+/* Large devices (desktops, less than 1200px) */
+@media only screen and (max-width: 1199.98px) { 
+  #navbar{
+    width: 80vw;
+  }
+  .slide{
+    padding: 0 10vw;
+  }
+}
+/* Medium devices (tablets, less than 992px) */
+@media only screen and (max-width: 991.98px) {
+  .slide-container h1{
+    margin-bottom: 40px;
+  }
+  #trifecta-container{
+    width: 100%;
+  }
+  #trifecta{
+    display: none;
+  }
+  #trifecta-slider{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: max-content;
+    position: relative;
+    margin-bottom: 20px;
+    overflow-x: hidden;
+  }
+  #trifecta-slides{
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    margin-left:0px;
+
+    -webkit-transition: margin .9s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: margin .9s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  #trifecta-slides li{
+    width:300px;
+    padding: 0 20px;
+  }
+  #trifecta-slider li.current{
+    /* probbly won't be used */
+  }
+  #trifecta-bullets,
+  #showcase-bullets{
+    width: 100%;
+    height: 10px;
+    display: inline-flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  #showcase-bullets{
+    margin-top: 30px;
+  }
+  .trifecta-bullet,
+  .showcase-bullet{
+    width: 11px;
+    height: 11px;
+    background-color: #002E76;
+    background-color: #F4F6FA;
+    /* border: 1px solid #002E76; */
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: background-color .9s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: background-color .9s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  .trifecta-bullet.current,
+  .showcase-bullet.current{
+    background-color: #002E76;
+  }
+  #showcase-full{
+    flex-direction: column;
+  }
+  #showcase-full > div {
+    width: 290px;
+    overflow: hidden;
+  }
+  .showcase-card {
+    margin: 0;
+  }
+  #showcase-full .arrow-left,
+  #showcase-full .arrow-right {
+    display: none;
+  }
+
+}
+/* Small devices (landscape phones, less than 768px) */
+@media only screen and (max-width: 767.98px) {
+  #contact-name {
+    flex-direction: column;
+  }
+  #contact-name input {
+    width: 100%;
+  }
+  #contact-form {
+    width: 60%;
+  }
+}
+
+
+@media only screen and (max-width: 575.98px) {
+  #contact-form {
+    width: 80%;
+  }
 }
