@@ -243,11 +243,9 @@
 
   background-image:url('../public/logo-grid-bg.png');
   background-size:contain;
+  background-size:cover;
   background-repeat: no-repeat;
   background-position: center;
-}
-.bg-contrast-true{
-  background-color:#91a9cc;
 }
 #logo-list{
   width: 100%;
@@ -306,6 +304,11 @@
   height: 37px;
   border: 1px solid #E2E2E2;
   margin-right: 7px;
+}
+.color-square ~ div{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
 }
 #techs-grouping {
   display: grid;

@@ -1,27 +1,87 @@
 const {API_URL} = process.env
 
+
 import Image from "next/image"
 // not used, but a great lib
 import Slugify from 'slugify'
 
+
+import { request } from "../../lib/datocms";
+
+
 export async function getServerSideProps(context){
   const { slug } = context.query
+  const SINGLE_QUERY = `query {
+                                  allProjects(filter:{slug:{eq:"${slug}"}}){
+                                    id
+                                    title
+                                    slug
+                                    businessType
+                                    tags
+                                    projectStatus
+                                    featured
+                                    description
+                                    skyview {
+                                      basename
+                                      filename
+                                      url
+                                    }
+                                    creativeProcess {
+                                      basename
+                                      filename
+                                      url
+                                    }
+                                    logo {
+                                      basename
+                                      filename
+                                      url
+                                    }
+                                    logoBackground {
+                                      hex
+                                    }
+                                    colorPalette
+                                    fonts
+                                    techsFront
+                                    techsBack
+                                    devices
+                                  }
+                              }`;
 
-  const res = await fetch(`${API_URL}/projects?slug=${slug}`)
-  const data = await res.json()
 
+  // const res = await fetch(`${API_URL}/projects?slug=${slug}`)
+  // const data = await res.json()
+  
+  // return {
+  //   props:{
+  //     project: data[0]
+  //   }
+  // }
+
+  const project = await request({
+    query: SINGLE_QUERY,
+    variables: { limit: 10 }
+  });
+  // console.log(project.allProjects[0].logoBackground)
   return {
-    props:{
-      project: data[0]
-    }
-  }
+    props: { project }
+  };
 }
+
+
 const imgLoader = ({ src }) => {
-  return `${API_URL}${src}`
+  // return `${API_URL}${src}`
+  return `${src}`
 }
 
 const Project = ( {project} ) => {
+
   
+  const logoBg = project.allProjects[0].logoBackground.hex
+  const colorPalette = project.allProjects[0].colorPalette.split(', ')
+  const fonts = project.allProjects[0].fonts.split(', ')
+  const techsFront = project.allProjects[0].techsFront.split(', ')
+  const techsBack = project.allProjects[0].techsBack.split(', ')
+
   const skyviewBullets = (e) => {
     var slides = document.querySelectorAll('.skyview-slide')
     var bullets = document.querySelectorAll('.skyview-bullet')
@@ -102,36 +162,36 @@ const Project = ( {project} ) => {
       <div id="project-container">
         <div id="project-wrapper">
           <div id="project-header">
-            <h1>{project.title}</h1>
+            <h1>{project.allProjects[0].title}</h1>
             <div id="header-divider">
               <div className="tags-section">
                 <ul className="project-tags">
-                  {project.tags.map(tag => {
+                  {project.allProjects[0].tags.map(tag => {
                     return (
                       <li key={tag.id}>
                         <div className="left-semi-circle"></div>
-                        <div className="tag-name">{tag.name}</div>
+                        <div className="tag-name">{tag}</div>
                         <div className="right-semi-circle"></div>
                       </li>
                     )
                   })}
                 </ul>
                 {
-                  project.state == true
+                  project.allProjects[0].state == true
                   ? <div className="status-border"><div className="project-status status-online"></div></div>
                   : <div className="status-border"><div className="project-status status-offline"></div></div>
                 }
               </div>
             </div>
-            <p>{project.type}</p>
+            <p>{project.allProjects[0].type}</p>
           </div>
           <div id="project-filling">
             <div id="project-description">
-                <p>{project.description}</p>
+                <p>{project.allProjects[0].description}</p>
             </div>
             <div id="skyview">
                 <ul id="skyview-slider">
-                  {project.skyview.map((sv, i) => {
+                  {project.allProjects[0].skyview.map((sv, i) => {
                     if(i==0){
                       return(
                         <li key={sv.id} className="skyview-slide current" data-zindex={-1} data-img={i}>
@@ -154,7 +214,7 @@ const Project = ( {project} ) => {
                   </a>
                 </ul>
                 <ul id="skyview-bullets">
-                  {project.skyview.map((bullet, i) => {
+                  {project.allProjects[0].skyview.map((bullet, i) => {
                     if(i==0){
                       return(
                         <li key={bullet.id}  onClick={(e) => {skyviewBullets(e)}} className="skyview-bullet active" data-bullet={i}></li>
@@ -171,7 +231,7 @@ const Project = ( {project} ) => {
             <div id="project-process">
               <h3>Creative Process</h3>
               <ul id="process-grid">
-                {project.process.map(p => {
+                {project.allProjects[0].creativeProcess.map(p => {
                   return(
                     <li className="process-thumbnail" onClick={(e) => {processModal(e)}}>
                       <Image loader={imgLoader} src={p.url} width={153} height={153}  objectFit="cover"/>
@@ -181,9 +241,9 @@ const Project = ( {project} ) => {
               </ul>
             </div>
             <div id="project-schematics">
-              <div id="project-logo-container" class={`bg-contrast-${project.logoBgContrast}`}>
+              <div id="project-logo-container" style={{ backgroundColor : logoBg}}>
                 <ul id="logo-list">
-                  {project.logo.map(l => {
+                  {project.allProjects[0].logo.map(l => {
                     return(
                       <li>
                         <Image loader={imgLoader} src={l.url} width={180} height={90}  objectFit="contain"/>
@@ -196,13 +256,13 @@ const Project = ( {project} ) => {
                 <div id="color-scheme">
                   <h3>Color Scheme</h3>
                   <ul>
-                    {project.colors.map(color => {
+                    {colorPalette.map(color => {
                       return(
                         <li>
-                          <div className="color-square" style={{ backgroundColor : color.hexcode}}></div>
+                          <div className="color-square" style={{ backgroundColor : color}}></div>
                           <div>
-                            <p>{color.name}</p>
-                            <small>{color.hexcode}</small>
+                            <p>{color}</p>
+                            {/* <small>{color}</small> */}
                           </div>
                         </li>
                       )
@@ -212,10 +272,10 @@ const Project = ( {project} ) => {
                 <div id="fonts-list">
                   <h3>Fonts</h3>
                   <ul>
-                    {project.fonts.map(font => {
+                    {fonts.map(font => {
                       return(
                         <li>
-                          <p style={{ fontFamily : `${font.name}`}}>{font.name}</p>
+                          <p style={{ fontFamily : `${font}`}}>{font}</p>
                         </li>
                       )
                     })}
@@ -227,10 +287,10 @@ const Project = ( {project} ) => {
                     <div id="backend-techs">
                       <h4>Backend</h4>
                       <ul>
-                        {project.backend.map(be => {
+                        {techsBack.map(be => {
                           return(
                             <li>
-                              <p>{be.name}</p>
+                              <p>{be}</p>
                             </li>
                           )
                         })}
@@ -239,10 +299,10 @@ const Project = ( {project} ) => {
                     <div id="frontend-techs">
                       <h4>Frontend</h4>
                       <ul>
-                        {project.frontend.map(fe => {
+                        {techsFront.map(fe => {
                           return(
                             <li>
-                              <p>{fe.name}</p>
+                              <p>{fe}</p>
                             </li>
                           )
                         })}
@@ -253,17 +313,57 @@ const Project = ( {project} ) => {
                 <div id="breakpoints">
                   <h3>Breakpoints</h3>
                   <ul>
-                    {project.devices.map(device => {
-                      return(
-                        <li>
-                          <div style={{
-                              width : device.width / 12 + "px",
-                              height : device.height / 12 + "px"
-                            }}>
-                            <p>{device.width} x {device.height}</p>
-                          </div>
-                        </li>
-                      )
+                    {project.allProjects[0].devices.map(device => {
+                      switch(device){
+                        case "desktop":
+                            return (
+                              <li>
+                                <div style={{
+                                    width : 1920 / 12 + "px",
+                                    height : 1080 / 12 + "px"
+                                  }}>
+                                  <p>1920 x 1080</p>
+                                </div>
+                              </li>
+                            )
+
+                        case "laptop":
+                          return (
+                            <li>
+                              <div style={{
+                                  width : 1366 / 12 + "px",
+                                  height : 768 / 12 + "px"
+                                }}>
+                                <p>1366 x 768</p>
+                              </div>
+                            </li>
+                          )
+
+                          case "tablet":
+                            return (
+                              <li>
+                                <div style={{
+                                    width : 768 / 12 + "px",
+                                    height : 1024 / 12 + "px"
+                                  }}>
+                                  <p>768 x 1024</p>
+                                </div>
+                              </li>
+                            )
+                          
+                          case "mobile":
+                            return (
+                              <li>
+                                <div style={{
+                                    width : 360 / 12 + "px",
+                                    height : 720 / 12 + "px"
+                                  }}>
+                                  <p>768 x 1024</p>
+                                </div>
+                              </li>
+                            )
+                      }
+                      
                     })}
                   </ul>
                 </div>

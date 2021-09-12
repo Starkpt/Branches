@@ -1,6 +1,44 @@
 import React, {useState, useEffect} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { request } from "../../lib/datocms";
+
+const HOMEPAGE_QUERY = `query HomePage {
+                                allProjects {
+                                  id
+                                  title
+                                  slug
+                                  businessType
+                                  tags
+                                  projectStatus
+                                  featured
+                                  description
+                                  skyview {
+                                    basename
+                                    filename
+                                    url
+                                  }
+                                  creativeProcess {
+                                    basename
+                                    filename
+                                    url
+                                  }
+                                  logo {
+                                    basename
+                                    filename
+                                    url
+                                  }
+                                  logoBackground {
+                                    hex
+                                  }
+                                  colorPalette
+                                  fonts
+                                  techsFront
+                                  techsBack
+                                  devices
+                                }
+                        }`;
+
 const {API_URL} = process.env
 
 import slugify from 'slugify'
@@ -14,13 +52,23 @@ import slugify from 'slugify'
 
 export async function getStaticProps(){
    
-  const projects = await fetch(`${API_URL}/projects`).then(res => res.json())
-  return{
-    props:{
-      projects: projects
-    }
-  }
+  // const projects = await fetch(`${API_URL}/projects`).then(res => res.json())
+  // return{
+  //   props:{
+  //     projects: projects
+  //   }
+  // }
+  const projects = await request({
+    query: HOMEPAGE_QUERY,
+    variables: { limit: 10 }
+  });
+  // console.log(projects.allProjects)
+  return {
+    props: { projects }
+  };
 }
+
+
 
 export default function Projects({projects}) {
   
@@ -29,7 +77,8 @@ export default function Projects({projects}) {
   
   //Image Loader from NextJS
   const imgLoader = ({ src }) => {
-    return `${API_URL}${src}`
+    // return `${API_URL}${src}`
+    return `${src}`
   }
   //Toggle visibility of filter section
   const toggleFilters = () => {
@@ -64,12 +113,11 @@ export default function Projects({projects}) {
       }
     }
   }
-
   const filterTags = []
-  projects.map(project => {
+  projects.allProjects.map(project => {
     project.tags.map(tag => {
-      if(!filterTags.includes(tag.name)){
-        filterTags.push(tag.name)
+      if(!filterTags.includes(tag)){
+        filterTags.push(tag)
       }
     })
   })
@@ -138,16 +186,6 @@ export default function Projects({projects}) {
                       <div className="right-semi-circle"></div>
                     </label>
                   </li>
-                  {/* <li>
-                    <label htmlFor="tag-maintenance">
-                      <div className="left-semi-circle">
-                        <input type="checkbox" id="tag-maintenance" className="tag-input" name="maintenance" />
-                        <div className="bullet-circle"></div>
-                      </div>
-                      <div className="tag-name">Maintenance</div>
-                      <div className="right-semi-circle"></div>
-                    </label>
-                  </li> */}
                 </ul>
               </div>
               <div id="filter-tags" className="filter-list">
@@ -170,25 +208,25 @@ export default function Projects({projects}) {
             </div>
           </div>
           <ul>
-            {projects.filter(project => {
+            {projects.allProjects.filter(project => {
 
               if(!(statusArr.length) && !(tagsArr.length)){
                 return project
               }
               for(let i = 0; i<project.tags.length; i++){
-                if(tagsArr.includes(project.tags[i].name)){
+                if(tagsArr.includes(project.tags[i])){
                   return project
                 }
               }
               // se tiver status no array E o array contiver o state
-              if(statusArr.length && statusArr.includes(project.state)){
+              if(statusArr.length && statusArr.includes(project.projectStatus)){
                 for(let i = 0; i<statusArr.length; i++){
                   return project
                 }
               }
 
             }).map(project => (
-              <li key={project.id} className="project-item" data-status={project.state} data-tags={project.tags.map(tag => slugify(tag.name,{lower:true}))}>
+              <li key={project.id} className="project-item" data-status={project.projectStatus} data-tags={project.tags.map(tag => slugify(tag,{lower:true}))}>
                 <Link href="/projects/[slug]" as={`/projects/${project.slug}`}>
                 <a href="">
                   <div className="project-thumbnail">
@@ -202,7 +240,7 @@ export default function Projects({projects}) {
                           <h5>{project.type}</h5>
                         </div>
                         {
-                          project.state == true
+                          project.projectStatus == true
                           ? <div className="projects-status status-online"></div>
                           : <div className="projects-status status-offline"></div>
                         }
@@ -211,7 +249,7 @@ export default function Projects({projects}) {
                         {project.tags.map(tag=>(
                           <li>
                             <div className="left-semi-circle"></div>
-                            <div className="tag-name">{tag.name}</div>
+                            <div className="tag-name">{tag}</div>
                             <div className="right-semi-circle"></div>
                           </li>
                         ))}

@@ -168,7 +168,8 @@ export default function Home({ projects }){
             </a>
             <div>
               <ul id="showcase-cards">
-                <Link href={`/projects/${projects[2].slug}`}>
+
+                <Link href={`/projects/${projects.allProjects[2].slug}`}>
                   <li className="showcase-card">
                     <a href="project-name">
                     <div className="showcase-title">
@@ -195,7 +196,7 @@ export default function Home({ projects }){
                     </a>
                   </li>
                 </Link>
-                <Link href={`/projects/${projects[1].slug}`}>
+                <Link href={`/projects/${projects.allProjects[1].slug}`}>
                   <li className="showcase-card">
                     <a href="project-name">
                       <div className="showcase-title">
@@ -222,7 +223,7 @@ export default function Home({ projects }){
                     </a>
                   </li>
                 </Link>
-                <Link href={`/projects/${projects[0].slug}`}>
+                <Link href={`/projects/${projects.allProjects[0].slug}`}>
                   <li className="showcase-card">
                     <a href="project-name">
                       <div className="showcase-title">
