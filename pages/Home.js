@@ -113,7 +113,7 @@ export default function Home({ projects }){
       email,
       message
     }
-    fetch('/contact/mail', {
+    fetch('/api/mail', {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',
