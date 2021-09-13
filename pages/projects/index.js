@@ -50,23 +50,23 @@ import slugify from 'slugify'
 //   return res
 // }
 
-export async function getStaticProps(){
+// export async function getStaticProps(){
    
-  // const projects = await fetch(`${API_URL}/projects`).then(res => res.json())
-  // return{
-  //   props:{
-  //     projects: projects
-  //   }
-  // }
-  // const projects = await request({
-  //   query: HOMEPAGE_QUERY,
-  //   variables: { limit: 10 }
-  // });
-  // // console.log(projects.allProjects)
-  // return {
-  //   props: { projects }
-  // };
-}
+//   const projects = await fetch(`${API_URL}/projects`).then(res => res.json())
+//   return{
+//     props:{
+//       projects: projects
+//     }
+//   }
+//   const projects = await request({
+//     query: HOMEPAGE_QUERY,
+//     variables: { limit: 10 }
+//   });
+//   // console.log(projects.allProjects)
+//   return {
+//     props: { projects }
+//   };
+// }
 
 
 
