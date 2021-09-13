@@ -6,10 +6,12 @@ require('dotenv').config()
 
 module.exports = {
   env:{
-    API_URL: process.env.API_URL
+    API_URL: process.env.API_URL,
+    NEXT_DATOCMS_API_TOKEN: process.env.NEXT_DATOCMS_API_TOKEN
   },
   publicRuntimeConfig: {
-    API_URL: process.env.API_URL
+    API_URL: process.env.API_URL,
+    NEXT_DATOCMS_API_TOKEN: process.env.NEXT_DATOCMS_API_TOKEN
   },
   webpack: config => {
     config.resolve.alias['components'] = path.join(__dirname, 'components')

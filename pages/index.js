@@ -18,8 +18,6 @@ export default function Index({projects}) {
   )
 }
 
-//cant remember what this does
-//const { publicRuntimeConfig } = getConfig()
 
 export async function getServerSideProps(){
 

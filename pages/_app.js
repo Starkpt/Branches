@@ -9,6 +9,8 @@ import 'styles/footer.css'
 import getConfig from 'next/config'
 import Layout from './Layout'
 
+const { publicRuntimeConfig } = getConfig()
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
