@@ -3,41 +3,41 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { request } from "../../lib/datocms";
 
-const HOMEPAGE_QUERY = `query HomePage {
-                                allProjects {
-                                  id
-                                  title
-                                  slug
-                                  businessType
-                                  tags
-                                  projectStatus
-                                  featured
-                                  description
-                                  skyview {
-                                    basename
-                                    filename
-                                    url
-                                  }
-                                  creativeProcess {
-                                    basename
-                                    filename
-                                    url
-                                  }
-                                  logo {
-                                    basename
-                                    filename
-                                    url
-                                  }
-                                  logoBackground {
-                                    hex
-                                  }
-                                  colorPalette
-                                  fonts
-                                  techsFront
-                                  techsBack
-                                  devices
-                                }
-                        }`;
+// const HOMEPAGE_QUERY = `query HomePage {
+//                                 allProjects {
+//                                   id
+//                                   title
+//                                   slug
+//                                   businessType
+//                                   tags
+//                                   projectStatus
+//                                   featured
+//                                   description
+//                                   skyview {
+//                                     basename
+//                                     filename
+//                                     url
+//                                   }
+//                                   creativeProcess {
+//                                     basename
+//                                     filename
+//                                     url
+//                                   }
+//                                   logo {
+//                                     basename
+//                                     filename
+//                                     url
+//                                   }
+//                                   logoBackground {
+//                                     hex
+//                                   }
+//                                   colorPalette
+//                                   fonts
+//                                   techsFront
+//                                   techsBack
+//                                   devices
+//                                 }
+//                         }`;
 
 const {API_URL} = process.env
 
@@ -58,14 +58,14 @@ export async function getStaticProps(){
   //     projects: projects
   //   }
   // }
-  const projects = await request({
-    query: HOMEPAGE_QUERY,
-    variables: { limit: 10 }
-  });
-  // console.log(projects.allProjects)
-  return {
-    props: { projects }
-  };
+  // const projects = await request({
+  //   query: HOMEPAGE_QUERY,
+  //   variables: { limit: 10 }
+  // });
+  // // console.log(projects.allProjects)
+  // return {
+  //   props: { projects }
+  // };
 }
 
 

@@ -19,51 +19,51 @@ export default function Index({projects}) {
 }
 
 
-export async function getServerSideProps(){
+// export async function getServerSideProps(){
 
-  const HOMEPAGE_QUERY = `query HomePage {
-      allProjects {
-        id
-        title
-        slug
-        businessType
-        tags
-        projectStatus
-        featured
-        description
-        skyview {
-          basename
-          filename
-          url
-        }
-        creativeProcess {
-          basename
-          filename
-          url
-        }
-        logo {
-          basename
-          filename
-          url
-        }
-        logoBackground {
-          hex
-        }
-        colorPalette
-        fonts
-        techsFront
-        techsBack
-        devices
-      }
-  }`;
+//   const HOMEPAGE_QUERY = `query HomePage {
+//       allProjects {
+//         id
+//         title
+//         slug
+//         businessType
+//         tags
+//         projectStatus
+//         featured
+//         description
+//         skyview {
+//           basename
+//           filename
+//           url
+//         }
+//         creativeProcess {
+//           basename
+//           filename
+//           url
+//         }
+//         logo {
+//           basename
+//           filename
+//           url
+//         }
+//         logoBackground {
+//           hex
+//         }
+//         colorPalette
+//         fonts
+//         techsFront
+//         techsBack
+//         devices
+//       }
+//   }`;
 
-  const projects = await request({
-    query: HOMEPAGE_QUERY,
-    variables: { limit: 10 }
-  });
+//   const projects = await request({
+//     query: HOMEPAGE_QUERY,
+//     variables: { limit: 10 }
+//   });
   
-  return {
-    props: { projects }
-  };
+//   return {
+//     props: { projects }
+//   };
   
-}
+// }
