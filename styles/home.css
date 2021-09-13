@@ -385,6 +385,11 @@
   width:49%;
 }
 
+#contact-email,
+#contact-subject,
+#contact-message{
+  width: 100%;
+}
 
 #contact-message{
   height: 180px;

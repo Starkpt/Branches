@@ -12,6 +12,14 @@ export default function Home({ projects }){
   const [trifectaDots, setTrifectaDots] = useState('')
   const [showcaseDots, setShowcaseDots] = useState('1')
 
+  // Form useStates
+  const [fname, setFName] = useState('')
+  const [lname, setLName] = useState('')
+  const [email, setEmail] = useState('')
+  const [subject, setSubject] = useState('')
+  const [message, setMessage] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+
 
   const trifectaBulletTarget = (e) => {
     let bulletList = document.querySelectorAll('.trifecta-bullet')
@@ -94,6 +102,36 @@ export default function Home({ projects }){
   }
 
 
+
+  const handleSubmit = (e) => { 
+    e.preventDefault()
+    console.log('Sending')
+    let data = {
+      fname,
+      lname,
+      subject,
+      email,
+      message
+    }
+    fetch('/contact/mail', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then((res) => {
+      console.log('Response received')
+      if (res.status === 200) {
+        console.log('Response succeeded!')
+        setSubmitted(true)
+        setFName('')
+        setLName('')
+        setMessage('')
+        setEmail('')
+      }
+    })
+  }
 
   return(
     <>
@@ -253,9 +291,9 @@ export default function Home({ projects }){
               </ul>
             </div>
             <ul id="showcase-bullets">
-              <li class="showcase-bullet current" data-showcase-bullet="1" onClick={(e) => {showcaseBulletTarget(e)}}></li>
-              <li class="showcase-bullet" data-showcase-bullet="2" onClick={(e) => {showcaseBulletTarget(e)}}></li>
-              <li class="showcase-bullet" data-showcase-bullet="3" onClick={(e) => {showcaseBulletTarget(e)}}></li>
+              <li className="showcase-bullet current" data-showcase-bullet="1" onClick={(e) => {showcaseBulletTarget(e)}}></li>
+              <li className="showcase-bullet" data-showcase-bullet="2" onClick={(e) => {showcaseBulletTarget(e)}}></li>
+              <li className="showcase-bullet" data-showcase-bullet="3" onClick={(e) => {showcaseBulletTarget(e)}}></li>
             </ul>
           </div>
         </div>
@@ -272,14 +310,14 @@ export default function Home({ projects }){
         <div id="contact-container" className="slide-container">
           <h1>Contact Us</h1>
           <form id="contact-form">
-            <div id="contact-name">
-              <input type="text" id="contact-fname" name="fname" placeholder="First Name" />
-              <input type="text" id="contact-lname" name="lname" placeholder="Last Name" />
-            </div>
-            <input type="text" id="contact-email" name="email" placeholder="Email" />
-            <input type="text" id="contact-subject" name="subject" placeholder="Subject" />
-            <textarea id="contact-message" name="message" placeholder="Message"></textarea>
-            <input type="submit" id="contact-submit" name="submit" placeholder="Submit" />
+              <div id="contact-name">
+                <input type="text" id="contact-fname" name="fname" placeholder="First Name" onChange={(e)=>{setFName(e.target.value)}}/>
+                <input type="text" id="contact-lname" name="lname" placeholder="Last Name" onChange={(e)=>{setLName(e.target.value)}}/>
+              </div>
+              <input type="text" id="contact-email" name="email" placeholder="Email" onChange={(e)=>{setEmail(e.target.value)}}/>
+              <input type="text" id="contact-subject" name="subject" placeholder="Subject" onChange={(e)=>{setSubject(e.target.value)}}/>
+              <textarea id="contact-message" name="message" placeholder="Message"onChange={(e)=>{setMessage(e.target.value)}}></textarea>
+            <input type="submit" id="contact-submit" name="submit" placeholder="Submit" onClick={(e)=>{handleSubmit(e)}}/>
           </form>
         </div>
       </div>
