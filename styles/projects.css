@@ -10,7 +10,8 @@
   background-color: #FDFDFD;
 }
 #projects-list h1{
-  font-family: 'Raleway Black';
+  font-family: 'Raleway';
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -73,6 +74,7 @@
 
 #filters-wrapper.filters-show{
   margin-top: 0px;
+  gap:18px;
 }
 .filter-list {
   display: flex;

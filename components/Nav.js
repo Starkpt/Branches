@@ -16,11 +16,11 @@ export default function Nav(){
               <a>Projects</a>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="/about">
               <a>About</a>
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </>

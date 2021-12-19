@@ -3,72 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { request } from "../../lib/datocms";
 
-// const HOMEPAGE_QUERY = `query HomePage {
-//                                 allProjects {
-//                                   id
-//                                   title
-//                                   slug
-//                                   businessType
-//                                   tags
-//                                   projectStatus
-//                                   featured
-//                                   description
-//                                   skyview {
-//                                     basename
-//                                     filename
-//                                     url
-//                                   }
-//                                   creativeProcess {
-//                                     basename
-//                                     filename
-//                                     url
-//                                   }
-//                                   logo {
-//                                     basename
-//                                     filename
-//                                     url
-//                                   }
-//                                   logoBackground {
-//                                     hex
-//                                   }
-//                                   colorPalette
-//                                   fonts
-//                                   techsFront
-//                                   techsBack
-//                                   devices
-//                                 }
-//                         }`;
-
 const {API_URL} = process.env
 
 import slugify from 'slugify'
-
-// export const getStaticProps = async () => {
-//   const res = await fetch(`${API_URL}/projects`)
-//   console.log(API_URL)
-//   const data = res.json()
-//   return res
-// }
-
-// export async function getStaticProps(){
-   
-//   const projects = await fetch(`${API_URL}/projects`).then(res => res.json())
-//   return{
-//     props:{
-//       projects: projects
-//     }
-//   }
-//   const projects = await request({
-//     query: HOMEPAGE_QUERY,
-//     variables: { limit: 10 }
-//   });
-//   // console.log(projects.allProjects)
-//   return {
-//     props: { projects }
-//   };
-// }
-
-
 
 export default function Projects({projects}) {
   

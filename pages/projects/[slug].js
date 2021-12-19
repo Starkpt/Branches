@@ -1,6 +1,5 @@
 const {API_URL} = process.env
 
-
 import Image from "next/image"
 // not used, but a great lib
 import Slugify from 'slugify'
@@ -11,42 +10,42 @@ import { request } from "../../lib/datocms";
 
 export async function getServerSideProps(context){
   const { slug } = context.query
-  const SINGLE_QUERY = `query {
-                                  allProjects(filter:{slug:{eq:"${slug}"}}){
-                                    id
-                                    title
-                                    slug
-                                    businessType
-                                    tags
-                                    projectStatus
-                                    featured
-                                    description
-                                    skyview {
-                                      basename
-                                      filename
-                                      url
-                                    }
-                                    creativeProcess {
-                                      basename
-                                      filename
-                                      url
-                                    }
-                                    logo {
-                                      basename
-                                      filename
-                                      url
-                                    }
-                                    logoBackground {
-                                      hex
-                                    }
-                                    colorPalette
-                                    fonts
-                                    techsFront
-                                    techsBack
-                                    devices
-                                  }
-                              }`;
 
+  const SINGLE_QUERY = `query {
+                          allProjects(filter:{slug:{eq:"${slug}"}}){
+                            id
+                            title
+                            slug
+                            businessType
+                            tags
+                            projectStatus
+                            featured
+                            description
+                            skyview {
+                              basename
+                              filename
+                              url
+                            }
+                            creativeProcess {
+                              basename
+                              filename
+                              url
+                            }
+                            logo {
+                              basename
+                              filename
+                              url
+                            }
+                            logoBackground {
+                              hex
+                            }
+                            colorPalette
+                            fonts
+                            techsFront
+                            techsBack
+                            devices
+                          }
+                        }`;
 
   // const res = await fetch(`${API_URL}/projects?slug=${slug}`)
   // const data = await res.json()
@@ -117,8 +116,6 @@ const Project = ( {project} ) => {
       })
       document.querySelector(`.skyview-slide[data-img="${Number(active.dataset['bullet']) - 1}"]`).classList.add('current')
       document.querySelector(`.skyview-bullet[data-bullet="${Number(active.dataset['bullet']) - 1}"]`).classList.add('active')
-
-      
     }
   }
   

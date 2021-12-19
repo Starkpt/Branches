@@ -101,8 +101,6 @@ export default function Home({ projects }){
     }
   }
 
-
-
   const handleSubmit = (e) => { 
     e.preventDefault()
     console.log('Sending')
@@ -113,7 +111,7 @@ export default function Home({ projects }){
       email,
       message
     }
-    fetch('/api/mail', {
+    fetch('./api/mail', {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',

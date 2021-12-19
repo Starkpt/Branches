@@ -1,22 +1,24 @@
-export default function (req, res) {
-  const pw = process.env.MAIL_PASS
-  console.log(req)
-  let nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer')
+
+export default async function (req, res) {
+
+  console.log(req.body)
+
   const transporter = nodemailer.createTransport({
-    port: 465,
-    host: "imap.gmail.com",
+    host: process.env.MAIL_HOST,
+    port: process.env.MAIL_PORT,
     auth: {
-      user: 'branches.burner@gmail.com',
-      pass: pw,
-    },
-    secure:true
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASS
+    }
   })
+
   const mailData = {
     from: req.body.email,
     to: 'branches.burner@gmail.com',
     subject: `Info request for ${req.body.subject} by ${req.body.fname} ${req.body.lname}`,
     text: req.body.message,
-    html: <div>{req.body.message}</div>
+    // html: <div>{req.body.message}</div>
    }
 
    transporter.sendMail(mailData, function (err, info) {
